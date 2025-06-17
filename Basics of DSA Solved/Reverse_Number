@@ -1,0 +1,9 @@
+function reverse(x: number): number {
+    let rem = Math.pow(2,31);
+    let s = x.toString();
+    let out = parseInt(s.split('').reverse().join(''));
+    if(out/rem >1 || out/rem <-1) return 0;
+    else {
+        return x>0 ? out : out *-1
+    }
+};
