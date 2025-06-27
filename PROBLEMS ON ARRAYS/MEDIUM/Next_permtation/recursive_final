@@ -1,0 +1,19 @@
+class Solution {
+public:
+    void solve(int i,vector<int> nums,unordered_map<vector<int>,int> &mp,vector<int> v){
+       if(i==n){
+        mp.insert(v);
+        return;
+       } 
+        v.push(nums[i]);
+        solve(i+1,nums,mp,v);
+        v.pop_back();
+        solve()
+    }
+    void nextPermutation(vector<int>& nums) {
+        unordered_map<vector<int>,int> mp;
+        vector<int> v;
+        sort(nums.begin(),nums.end());
+        solve(0,nums,mp,v);
+    }
+};
