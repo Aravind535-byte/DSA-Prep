@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        //O(n^3),O(n)+O(n);
+        int n=nums.size();
+        vector<vector<int>> v;
+        vector<int> num(3);
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n && j!=i;j++){
+                for(int k=0;k<n && k!=i && k!=j;k++){
+                    if(nums[i]+nums[j]+nums[k]==0){
+                        num[0]=nums[i];
+                        num[1]=nums[j];
+                        num[2]=nums[k];
+                        sort(num.begin(),num.end());
+                        int cnt=0;
+                        for(auto t:v){
+                            if(t==num){
+                                cnt=1;
+                                break;
+                            }
+                        }
+                        if(cnt==0){
+                            v.push_back(num);
+                        }
+                    }
+                }
+            }
+        }
+        return v;
+    }
+};
