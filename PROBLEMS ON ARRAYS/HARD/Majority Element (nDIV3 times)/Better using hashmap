@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        vector<int> vectorOfCondition;int k=nums.size()/3;
+        unordered_map<int,int> mapOfCount;
+        for(auto value : nums){
+            mapOfCount[value]++;
+        }
+        for(auto it : mapOfCount){
+            if(vectorOfCondition.size()>=2) break;
+            if(it.second>k){
+                vectorOfCondition.push_back(it.first);
+            }
+        }
+        return vectorOfCondition;
+    }
+};
