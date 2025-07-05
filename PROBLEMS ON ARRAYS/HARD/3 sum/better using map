@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        //O(n^2 + n + n + nlog(n)),O(n)+O(n)+O(n)+O(n);
+        int n=nums.size();
+        // sort(nums.begin(),nums.end()); 
+        vector<vector<int>> v;
+        vector<int> num(3);unordered_map<int,int> mp;
+        map<vector<int>,int> mpp;
+        for(int i=0;i<n;i++){
+            mp[nums[i]]=i;
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n && j!=i;j++){
+                if(mp.find(-nums[i]-nums[j])!=mp.end() && mp[-nums[i]-nums[j]]!=i && mp[-nums[i]-nums[j]]!=j){
+                    num[0]=nums[i];
+                        num[1]=nums[j];
+                        num[2]=-nums[i]-nums[j];
+                        sort(num.begin(),num.end());
+                        if(mpp.find(num)==mpp.end()){
+                            mpp[num]++;
+                            v.push_back(num);
+                        }
+                }
+            }
+        }
+        
+        return v;
+    }
+};
