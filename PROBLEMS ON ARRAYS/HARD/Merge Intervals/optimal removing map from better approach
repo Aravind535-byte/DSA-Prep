@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        // map<int,vector<int>> mp;
+        vector<vector<int>> v;
+        sort(intervals.begin(),intervals.end());
+        int n= intervals.size();
+        // for(int i=0;i<n;i++){
+        //     mp[intervals[i][0]].push_back(intervals[i][1]);
+        // }
+        v.push_back({intervals[0][0],intervals[0][1]});
+        for(int i=1;i<n;i++){
+            int k=intervals[i][1];
+            // for(int j=intervals[i][1];j>=intervals[i][0];j--){
+            //     if(mp.find(j)!=mp.end()){
+            //         if(mp[j][mp[j].size()-1]>intervals[i][1]){
+            //             k=max(k,mp[j][mp[j].size()-1]);
+            //         }
+            //     }
+            // }
+            if(intervals[i][0]>=v[v.size()-1][0] && intervals[i][0]<=v[v.size()-1][1]){
+                if(k>v[v.size()-1][1]){v[v.size()-1][1]=k;}
+            }
+            else if(intervals[i][0]<v[v.size()-1][0] && intervals[i][0]<=v[v.size()-1][1]){
+                v[v.size()-1][0]=intervals[i][0];
+                if(k>v[v.size()-1][1]){v[v.size()-1][1]=k;}
+            }
+            else{
+                v.push_back({intervals[i][0],intervals[i][1]});
+            }
+        }
+        return v;
+    }
+};
